@@ -4,6 +4,13 @@ import { shade } from 'polished';
 export const Header = styled.h1`
   font-size: 50px;
   text-align: center;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 export const Form = styled.form`
@@ -36,5 +43,13 @@ export const Form = styled.form`
     &:hover {
       background: ${shade(0.2, '#30c452')};
     }
+  }
+`;
+
+export const Card = styled.div`
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
   }
 `;
