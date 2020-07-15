@@ -53,21 +53,38 @@ export const CardContainer = styled.div`
 `;
 
 export const Card = styled.div`
-  max-width: 300px;
   position: relative;
-  padding: 0 10px;
-  margin-top: 50px;
-  border-radius: 4px;
-  box-shadow: 10px 3px 15px -4px rgba(0, 0, 0, 0.75);
+  margin-top: 30px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 'backProfile' 'lore' 'stats';
+`;
 
-  img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    position: absolute;
-    left: -30px;
-    top: -30px;
-  }
+export const Profile = styled.img`
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 0.6;
+  position: absolute;
+  left: -30px;
+  top: -30px;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3);
+`;
+
+export const BackgroundProfile = styled.img`
+  grid-area: 'backProfile';
+  width: 300px;
+  height: 180px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+`;
+
+export const Lore = styled.div`
+  grid-area: 'lore';
+  padding: 0 5px;
 
   h1 {
     text-align: center;
@@ -77,16 +94,24 @@ export const Card = styled.div`
     text-align: justify;
     margin-top: 25px;
   }
+`;
+
+export const ClassHero = styled.div`
+  grid-area: 'stats';
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
 
   ul {
     list-style: none;
     display: flex;
     justify-content: space-between;
     margin-top: 25px;
+    padding: 0 25px;
   }
 
   strong {
-    margin: 25px 0;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
   }

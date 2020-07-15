@@ -3,10 +3,20 @@ import { RiSearchLine } from 'react-icons/ri';
 
 import profile from '../../assets/profile.png';
 import backgroundLogo from '../../assets/background-logo.png';
+import backLogo from '../../assets/backLogo.png';
 
 import api from '../../services/api';
 
-import { Header, Form, Card, CardContainer } from './styles';
+import {
+  Header,
+  Form,
+  Card,
+  CardContainer,
+  BackgroundProfile,
+  ClassHero,
+  Lore,
+  Profile,
+} from './styles';
 
 const Dashboard: React.FC = () => {
   const [newHero, setNewHero] = useState('');
@@ -42,20 +52,25 @@ const Dashboard: React.FC = () => {
       </Form>
       <CardContainer>
         <Card>
-          <img src={profile} alt="profile" />
-          <h1>Jinx</h1>
-          <p>
-            Com uma conexão inata com o poder latente de Runeterra, Ahri é uma
-            vastaya capaz de transformar magia em orbes de pura energia. Ela
-            gosta de brincar com suas presas manipulando suas emoções antes de
-            devorar suas essências vitais. Apesar de sua natureza...
-          </p>
-          <ul>
-            <li>Assassin</li>
-            <li>Marksman</li>
-            <li>Fighter</li>
-          </ul>
-          <strong>A Espada Darkin</strong>
+          <Profile src={profile} alt="profile" />
+          <BackgroundProfile src={backLogo} alt="test" />
+          <Lore>
+            <h1>Jinx</h1>
+            <p>
+              Com uma conexão inata com o poder latente de Runeterra, Ahri é uma
+              vastaya capaz de transformar magia em orbes de pura energia. Ela
+              gosta de brincar com suas presas manipulando suas emoções antes de
+              devorar suas essências vitais. Apesar de sua natureza...
+            </p>
+          </Lore>
+          <ClassHero>
+            <ul>
+              <li>Assassin</li>
+              <li>Marksman</li>
+              <li>Fighter</li>
+            </ul>
+            <strong>A Espada Darkin</strong>
+          </ClassHero>
         </Card>
       </CardContainer>
     </>
