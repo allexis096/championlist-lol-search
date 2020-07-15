@@ -25,6 +25,7 @@ export const Form = styled.form`
     border: 0;
     border-radius: 5px;
     padding-left: 10px;
+    text-align: center;
 
     &::placeholder {
       text-align: center;
@@ -54,12 +55,12 @@ export const CardContainer = styled.div`
 
 export const Card = styled.div`
   position: relative;
-  margin-top: 30px;
+  margin-top: 50px;
   border-radius: 15px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
   display: grid;
   grid-template-columns: 300px;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 200px 200px;
   grid-template-areas: 'backProfile' 'lore' 'stats';
 `;
 
@@ -108,6 +109,14 @@ export const ClassHero = styled.div`
     justify-content: space-between;
     margin-top: 25px;
     padding: 0 25px;
+
+    li {
+      background: #000;
+      color: #fff;
+      border-radius: 3px;
+      font-size: 16px;
+      padding: 5px;
+    }
   }
 
   strong {

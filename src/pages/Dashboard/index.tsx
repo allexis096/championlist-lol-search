@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 
 import profile from '../../assets/profile.png';
@@ -18,20 +18,24 @@ import {
   Profile,
 } from './styles';
 
+interface Heroes {
+  id: string;
+}
+
 const Dashboard: React.FC = () => {
-  const [newHero, setNewHero] = useState('');
+  const [newHero, setNewHero] = useState<Heroes[]>([]);
 
-  async function handleSearchChampion(
-    event: FormEvent<HTMLFormElement>,
-  ): Promise<void> {
-    event.preventDefault();
+  useEffect(() => {
+    const loader = async (): Promise<void> => {
+      const response = await api.get(`cdn/10.14.1/data/en_US/champion.json`);
 
-    const response = await api.get(`${newHero}.json`);
+      setNewHero(Object.values(response.data.data));
 
-    const hero = response.data;
+      console.log(Object.values(response.data.data));
+    };
 
-    return console.log(hero);
-  }
+    loader();
+  }, []);
 
   return (
     <>
@@ -39,39 +43,37 @@ const Dashboard: React.FC = () => {
         Find a champion in League of Legends
         <img src={backgroundLogo} alt="background" />
       </Header>
-      <Form onSubmit={handleSearchChampion}>
-        <input
-          value={newHero}
-          onChange={e => setNewHero(e.target.value)}
-          type="text"
-          placeholder="type the name of a champion"
-        />
+      <Form>
+        <input type="text" placeholder="type the name of a champion" />
         <button type="submit">
           <RiSearchLine size={20} />
         </button>
       </Form>
       <CardContainer>
-        <Card>
-          <Profile src={profile} alt="profile" />
-          <BackgroundProfile src={backLogo} alt="test" />
-          <Lore>
-            <h1>Jinx</h1>
-            <p>
-              Com uma conexão inata com o poder latente de Runeterra, Ahri é uma
-              vastaya capaz de transformar magia em orbes de pura energia. Ela
-              gosta de brincar com suas presas manipulando suas emoções antes de
-              devorar suas essências vitais. Apesar de sua natureza...
-            </p>
-          </Lore>
-          <ClassHero>
-            <ul>
-              <li>Assassin</li>
-              <li>Marksman</li>
-              <li>Fighter</li>
-            </ul>
-            <strong>A Espada Darkin</strong>
-          </ClassHero>
-        </Card>
+        {newHero.map(hero => (
+          <Card key={hero.id}>
+            <Profile src={profile} alt="profile" />
+            <BackgroundProfile src={backLogo} alt="test" />
+            <Lore>
+              <h1>Jinx</h1>
+              <p>
+                Com uma conexão inata com o poder latente de Runeterra, Ahri é
+                uma vastaya capaz de transformar magia em orbes de pura energia.
+                Ela gosta de brincar com suas presas manipulando suas emoções
+                antes de devorar suas essências vitais. Apesar de sua
+                natureza...
+              </p>
+            </Lore>
+            <ClassHero>
+              <ul>
+                <li>Assassin</li>
+                <li>Marksman</li>
+                <li>Fighter</li>
+              </ul>
+              <strong>A Espada Darkin</strong>
+            </ClassHero>
+          </Card>
+        ))}
       </CardContainer>
     </>
   );
