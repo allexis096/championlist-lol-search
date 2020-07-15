@@ -46,10 +46,48 @@ export const Form = styled.form`
   }
 `;
 
+export const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+`;
+
 export const Card = styled.div`
+  max-width: 300px;
+  position: relative;
+  padding: 0 10px;
+  margin-top: 50px;
+  border-radius: 4px;
+  box-shadow: 10px 3px 15px -4px rgba(0, 0, 0, 0.75);
+
   img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
+    position: absolute;
+    left: -30px;
+    top: -30px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    text-align: justify;
+    margin-top: 25px;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+  }
+
+  strong {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
   }
 `;
