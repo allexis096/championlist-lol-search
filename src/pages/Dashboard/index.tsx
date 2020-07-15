@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 
-import profile from '../../assets/profile.png';
 import backgroundLogo from '../../assets/background-logo.png';
-import backLogo from '../../assets/backLogo.png';
 
 import api from '../../services/api';
 
@@ -20,6 +18,7 @@ import {
 
 interface Heroes {
   id: string;
+  name: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -30,8 +29,6 @@ const Dashboard: React.FC = () => {
       const response = await api.get(`cdn/10.14.1/data/en_US/champion.json`);
 
       setNewHero(Object.values(response.data.data));
-
-      console.log(Object.values(response.data.data));
     };
 
     loader();
@@ -40,7 +37,7 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <Header>
-        Find a champion in League of Legends
+        League of Legends Champion Finder
         <img src={backgroundLogo} alt="background" />
       </Header>
       <Form>
@@ -52,10 +49,16 @@ const Dashboard: React.FC = () => {
       <CardContainer>
         {newHero.map(hero => (
           <Card key={hero.id}>
-            <Profile src={profile} alt="profile" />
-            <BackgroundProfile src={backLogo} alt="test" />
+            <Profile
+              src={`http://ddragon.leagueoflegends.com/cdn/10.14.1/img/champion/${hero.id}.png`}
+              alt={hero.id}
+            />
+            <BackgroundProfile
+              src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${hero.id}_0.jpg`}
+              alt={hero.id}
+            />
             <Lore>
-              <h1>Jinx</h1>
+              <h1>{hero.name}</h1>
               <p>
                 Com uma conexão inata com o poder latente de Runeterra, Ahri é
                 uma vastaya capaz de transformar magia em orbes de pura energia.

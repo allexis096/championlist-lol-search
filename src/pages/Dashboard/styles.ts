@@ -68,6 +68,7 @@ export const Profile = styled.img`
   width: 90px;
   height: 90px;
   border-radius: 50%;
+  background-clip: padding-box;
   border: 0.6;
   position: absolute;
   left: -30px;
