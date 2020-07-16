@@ -1,5 +1,4 @@
-import React, { FormEvent, useState, useEffect } from 'react';
-import { RiSearchLine } from 'react-icons/ri';
+import React, { useState, useEffect } from 'react';
 
 import backgroundLogo from '../../assets/background-logo.png';
 
@@ -38,15 +37,11 @@ const Dashboard: React.FC = () => {
     loader();
   }, []);
 
-  async function handleSearch(
-    event: FormEvent<HTMLFormElement>,
-  ): Promise<void> {
-    event.preventDefault();
-
-    const response = newHero.find(hero => hero.id === heroSearch);
-
-    console.log(response);
-  }
+  const filteredChampions = newHero.filter(champion => {
+    return champion.name
+      .toLocaleLowerCase()
+      .includes(heroSearch.toLocaleLowerCase());
+  });
 
   return (
     <>
@@ -54,19 +49,15 @@ const Dashboard: React.FC = () => {
         League of Legends Champion Finder
         <img src={backgroundLogo} alt="background" />
       </Header>
-      <Form onSubmit={handleSearch}>
+      <Form>
         <input
-          value={heroSearch}
           onChange={e => setHeroSearch(e.target.value)}
           type="text"
           placeholder="type the name of a champion"
         />
-        <button type="submit">
-          <RiSearchLine size={20} />
-        </button>
       </Form>
       <CardContainer>
-        {newHero.map(hero => (
+        {filteredChampions.map(hero => (
           <Card key={hero.id}>
             <Profile
               src={`http://ddragon.leagueoflegends.com/cdn/10.14.1/img/champion/${hero.id}.png`}
