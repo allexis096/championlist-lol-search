@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 
 import backgroundLogo from '../../assets/background-logo.png';
@@ -26,6 +26,7 @@ interface Heroes {
 
 const Dashboard: React.FC = () => {
   const [newHero, setNewHero] = useState<Heroes[]>([]);
+  const [heroSearch, setHeroSearch] = useState('');
 
   useEffect(() => {
     const loader = async (): Promise<void> => {
@@ -37,14 +38,29 @@ const Dashboard: React.FC = () => {
     loader();
   }, []);
 
+  async function handleSearch(
+    event: FormEvent<HTMLFormElement>,
+  ): Promise<void> {
+    event.preventDefault();
+
+    const response = newHero.find(hero => hero.id === heroSearch);
+
+    console.log(response);
+  }
+
   return (
     <>
       <Header>
         League of Legends Champion Finder
         <img src={backgroundLogo} alt="background" />
       </Header>
-      <Form>
-        <input type="text" placeholder="type the name of a champion" />
+      <Form onSubmit={handleSearch}>
+        <input
+          value={heroSearch}
+          onChange={e => setHeroSearch(e.target.value)}
+          type="text"
+          placeholder="type the name of a champion"
+        />
         <button type="submit">
           <RiSearchLine size={20} />
         </button>
