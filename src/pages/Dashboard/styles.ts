@@ -6,8 +6,10 @@ export const Header = styled.h1`
   text-align: center;
   display: flex;
   align-items: center;
+  color: #fff;
 
   img {
+    margin-left: 10px;
     width: 100px;
     height: 100px;
   }
@@ -62,13 +64,19 @@ export const Card = styled.div`
   grid-template-columns: 300px;
   grid-template-rows: 1fr 200px 200px;
   grid-template-areas: 'backProfile' 'lore' 'stats';
+  background: #aaa;
+  transition: 0.6s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const Profile = styled.img`
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background-clip: padding-box;
   border: 0.6;
   position: absolute;
   left: -30px;
@@ -86,15 +94,20 @@ export const BackgroundProfile = styled.img`
 
 export const Lore = styled.div`
   grid-area: 'lore';
-  padding: 0 5px;
+  padding: 0 8px;
 
   h1 {
+    font-size: 50px;
     text-align: center;
+    -webkit-text-stroke: 1.5px black;
+    color: #fff;
   }
 
   p {
     text-align: justify;
     margin-top: 25px;
+    color: #222;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 `;
 
@@ -107,7 +120,7 @@ export const ClassHero = styled.div`
   ul {
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 25px;
     padding: 0 25px;
 
@@ -117,10 +130,16 @@ export const ClassHero = styled.div`
       border-radius: 3px;
       font-size: 16px;
       padding: 5px;
+
+      & + li {
+        margin-left: 10px;
+      }
     }
   }
 
   strong {
+    font-size: 20px;
+    color: #000;
     margin-top: 50px;
     display: flex;
     justify-content: center;

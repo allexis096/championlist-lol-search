@@ -19,6 +19,9 @@ import {
 interface Heroes {
   id: string;
   name: string;
+  blurb: string;
+  tags: [];
+  title: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -59,21 +62,15 @@ const Dashboard: React.FC = () => {
             />
             <Lore>
               <h1>{hero.name}</h1>
-              <p>
-                Com uma conexão inata com o poder latente de Runeterra, Ahri é
-                uma vastaya capaz de transformar magia em orbes de pura energia.
-                Ela gosta de brincar com suas presas manipulando suas emoções
-                antes de devorar suas essências vitais. Apesar de sua
-                natureza...
-              </p>
+              <p>{hero.blurb}</p>
             </Lore>
             <ClassHero>
               <ul>
-                <li>Assassin</li>
-                <li>Marksman</li>
-                <li>Fighter</li>
+                {hero.tags.map(tag => (
+                  <li key={tag}>{tag}</li>
+                ))}
               </ul>
-              <strong>A Espada Darkin</strong>
+              <strong>{hero.title}</strong>
             </ClassHero>
           </Card>
         ))}
