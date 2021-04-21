@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="GoStack MeetApp" src="https://img.icons8.com/all/500/league-of-legends.png" />
+    <img alt="GoStack MeetApp" width="500" src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/bltcfa4652c8d383f56/5e21837f63d1b6503160d39b/Home-page.jpg" />
     <br>
     League of Legends Champion Finder
 </h1>
